@@ -1,0 +1,98 @@
+package atm;
+import java.util.Scanner;
+
+public class BankAccount {
+
+    private static Scanner currency = new Scanner(System.in);
+    private static double balance = 10000; 
+    public static void main(String[] args) 
+    {
+    	int accountNumber = 0;
+        if (true) {
+            System.out.println("Insert your account number.:");
+            accountNumber =  currency.nextInt();
+
+            if (accountNumber == 0) {
+                System.out.println("Your account number is not recognized. Please try again..");
+              
+            }
+
+            System.out.println("Provide your PIN:");
+            int pin = currency.nextInt();
+
+            if (pin == 0) {
+                System.out.println("Your PIN is not recognized. Please try again..");
+               
+            }
+            System.out.println("Hello, ATM user!!");
+           
+        }
+        while (true) {
+        	menudisplay();
+            int choice = UserPick();
+
+            switch (choice) {
+                case 1:
+                	Verifybalance();
+                    break;
+                case 2:
+                    deposit();
+                    break;
+                case 3:
+                    withdraw();
+                    break;
+                case 4:
+                    exit();
+                    break;
+                default:
+                    System.out.println("Invalid option. Please make another choice.");
+            }
+        }
+    }
+    private static void menudisplay() {
+        System.out.println("\nSteps:");
+        System.out.println("1. Display The Remaining Balance");
+        System.out.println("2. Deposit The Money");
+        System.out.println("3. Withdrawl Of Money");
+        System.out.println("4. Exit The Atm");
+    }
+
+    private static int UserPick() {
+        System.out.print("Please select your choice: ");
+        return currency.nextInt();
+    }
+
+    private static void Verifybalance() {
+        System.out.println("Your current remaining balance in the account is: $" + balance);
+    }
+
+    private static void deposit() {
+        System.out.print("Enter the amount to deposit in the account: $");
+        double amount = currency.nextDouble();
+
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("your amount is Deposited in the  account successfully. Your Current  balance in the account is : $" + balance);
+        } else {
+            System.out.println("Your amount can't be deposited.");
+        }
+    }
+
+    private static void withdraw() {
+        System.out.print("Enter the withdrawal amount from the account: $");
+        double amount = currency.nextDouble();
+
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawal of amount was done successfuly.  Your Cureent  balance in the account is: $" + balance);
+        } else {
+            System.out.println("Your amount can't be withdrawed or insufficient money.");
+        }
+    }
+    private static void exit() {
+        System.out.println("Thank you for using the ATM.\n");
+        System.out.println("Goodbye!!");
+        System.exit(0);
+     }
+        
+}
